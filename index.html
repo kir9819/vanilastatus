@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title> Статусики на каждую секунду </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no"/> <!-- нельзя приближать на мобильных устройствах-->
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- <link rel="shortcut icon" href="images/favicon3.png" type="image/x-icon"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+var text = "";
+
+$(document).ready(function(){
+  refresh();
+  
+})
+function refresh() {
+  var img = document.getElementById("img"),
+	  ctx = img.getContext("2d"),
+      image = new Image();
+  img.height = 480;
+  img.width = 640;
+  image.src = "http://placeimg.com/640/480/any?" + Math.random();
+  (async function(){
+  await getText();
+  }());
+  image.onload = function() {
+    ctx.drawImage (image, 0,0, 640, 480);
+	ctx.fillStyle = "#00F";
+	ctx.font = "30pt Tahoma";
+	ctx.fillText(text, 50, 300);
+  }
+}
+
+async function getText() {
+var request = new XMLHttpRequest();
+  request.open('GET', 'http://fucking-great-advice.ru/api/random/censored/');
+  request.onreadystatechange = function(e) {
+    if (this.readyState = 4) {
+        if (this.status == 200) {
+            var response = JSON.parse(this.responseText);
+			text = response.text;
+        }
+		
+    }
+}
+request.send(null);
+}
+</script>
+<!-- <img src="http://placeimg.com/640/480/any"> -->
+<canvas id="img">1</canvas>
+<button onclick="refresh()">Refresh</button>
+</body>
+</html>
