@@ -8,6 +8,7 @@ var photo_id = "";
 
 
 function pictureAsBlob() {
+	var canvas = document.getElementById("img");
     return convertImageToBlob(canvas.toDataURL());
 }
 
