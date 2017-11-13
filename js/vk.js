@@ -7,20 +7,26 @@ var hash_vk = "";
 var photo_id = "";
 
 
+function pictureAsBlob() {
+    return convertImageToBlob(canvas.toDataURL());
+}
 
+function convertImageToBlob(dataURL) {
+    var bytes = atob(dataURL.split(',')[1]);
+    var arr = new Uint8Array(bytes.length);
+    for (var i = 0; i < bytes.length; i++) {
+        arr[i] = bytes.charCodeAt(i);
+    }
+    return new Blob([arr], {type: 'image/png'});
+}
 
 function login() {
 	VK.Auth.login(function(response) {
-  if (response.session) {
-    console.log("authorization ok");
-	user_id = response.session.user.id;
-	/* Пользователь успешно авторизовался */
-    if (response.settings) {
-      /* Выбранные настройки доступа пользователя, если они были запрошены */
-    }
-  } else {
-    /* Пользователь нажал кнопку Отмена в окне авторизации */
-  }
+      if (response.session) {
+        console.log("authorization ok");
+	    user_id = response.session.user.id;
+		vkGetUploadUrl();
+      }, 4;
 });
 }
 
@@ -30,34 +36,65 @@ function post_vk() {
 	wallPost("", img, user_id);
 }
 
-function wallPost(message, image, user_id) {
-  VK.api('photos.getWallUploadServer', {
-    uid: user_id
-  }, function (data) {
-    if (data.response) {
-      $.post('/upload/', {  // url на ВАШЕМ сервере, который будет загружать изображение на сервер контакта (upload_url)
-        upload_url: data.response.upload_url,
-        image: image,
-      }, function (json) {
-        VK.api("photos.saveWallPhoto", {
-          server: json.server,
-          photo: json.photo,
-          hash: json.hash,
-          uid: user_id
-        }, function (data) {
-          VK.api('wall.post', {
-            message: message,
-            attachments: data.response['0'].id
-          });
-        });
-      }, 'json');
-    }
-  });
-};
 
+function vkGetUploadUrl() {
+    console.log("getting upload url");
+    VK.Api.call("photos.getWallUploadServer", {}, function (r) {
+        if (r.response) {
+            vkUploadPicture(r.response.upload_url);
+        } else {
+            console.log("failed to get upload url");
+        }
+    });
+}
 
+function vkUploadPicture(uploadUrl) {
+    console.log("uploading picture");
 
-function get_photo_url() {
+    var formData = new FormData();
+    formData.append("url", uploadUrl);
+    formData.append("photo", pictureAsBlob());
+
+    $.ajax({
+        url: uploadUrl,
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        success: function (response) {
+            var responseDeserialized = JSON.parse(response);
+            vkSavePicture(responseDeserialized.photo, responseDeserialized.server, responseDeserialized.hash);
+        },
+        error: function () {
+            console.log("failed to upload");
+        }
+    });
+}
+
+function vkSavePicture(photo, server, hash) {
+    console.log("saving picture");
+    VK.Api.call("photos.saveWallPhoto", {photo: photo, server: server, hash: hash}, function (r) {
+        if (r.response) {
+            vkPostPicture(r.response[0].owner_id, r.response[0].id);
+        } else {
+            console.log("failed to save");
+        }
+    });
+}
+
+function vkPostPicture(ownerId, picId) {
+    console.log("posting picture");
+    VK.Api.call("wall.post", {owner_id: ownerId, attachments: picId}, function (r) {
+        if (r.response) {
+            console.log("PICTURE POSTED")
+        } else {
+            console.log("failed to post");
+        }
+    });
+}
+
+/*function get_photo_url() {
 	$.ajax({
 		url: "https://api.vk.com/method/photos.getWallUploadServer?v=5.69",
 		dataType: "json",
@@ -129,5 +166,5 @@ function post() {
 			post();
 		} 
 	})
-}
+}*/
 
