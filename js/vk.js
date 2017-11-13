@@ -6,6 +6,56 @@ var photo_vk = "";
 var hash_vk = "";
 var photo_id = "";
 
+var canvas_img = document.getElementById("img");
+var img = canvas_img.toDataURL("image/png");
+
+
+function login() {
+	VK.Auth.login(function(response) {
+  if (response.session) {
+    console.log("authorization ok");
+	user_id = response.session.user.id;
+	/* Пользователь успешно авторизовался */
+    if (response.settings) {
+      /* Выбранные настройки доступа пользователя, если они были запрошены */
+    }
+  } else {
+    /* Пользователь нажал кнопку Отмена в окне авторизации */
+  }
+});
+}
+
+function post_vk() {
+	wallPost("", img, user_id);
+}
+
+function wallPost(message, image, user_id) {
+  VK.api('photos.getWallUploadServer', {
+    uid: user_id
+  }, function (data) {
+    if (data.response) {
+      $.post('/upload/', {  // url на ВАШЕМ сервере, который будет загружать изображение на сервер контакта (upload_url)
+        upload_url: data.response.upload_url,
+        image: image,
+      }, function (json) {
+        VK.api("photos.saveWallPhoto", {
+          server: json.server,
+          photo: json.photo,
+          hash: json.hash,
+          uid: user_id
+        }, function (data) {
+          VK.api('wall.post', {
+            message: message,
+            attachments: data.response['0'].id
+          });
+        });
+      }, 'json');
+    }
+  });
+};
+
+
+
 function get_photo_url() {
 	$.ajax({
 		url: "https://api.vk.com/method/photos.getWallUploadServer?v=5.69",
