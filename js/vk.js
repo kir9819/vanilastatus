@@ -6,8 +6,7 @@ var photo_vk = "";
 var hash_vk = "";
 var photo_id = "";
 
-var canvas_img = document.getElementById("img");
-var img = canvas_img.toDataURL("image/png");
+
 
 
 function login() {
@@ -26,6 +25,8 @@ function login() {
 }
 
 function post_vk() {
+	var canvas_img = document.getElementById("img");
+    var img = canvas_img.toDataURL("image/png");
 	wallPost("", img, user_id);
 }
 
