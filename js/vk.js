@@ -26,8 +26,8 @@ function login() {
         console.log("authorization ok");
 	    user_id = response.session.user.id;
 		vkGetUploadUrl();
-      }, 4;
-});
+      }
+}, 4);
 }
 
 function post_vk() {
