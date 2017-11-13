@@ -13,9 +13,13 @@ function get_photo_url() {
 		success: function(data) {
 			url_photo = data.response.upload_url;
 			user_id = data.response.user_id;
+			concole.log("step 1 successful");
 			upload_photo();
 		},
-		error: get_photo_url();
+		error: function(){
+			concole.log("step 1 error");
+			get_photo_url();
+		}
 	})
 }
 
@@ -34,9 +38,13 @@ function upload_photo() {
 			server_vk = data.server;
 			photo_vk = data.photo;
 			hash_vk = data.hash;
+			concole.log("step 2 successful");
 			save_photo();
 		},
-		error: upload_photo();
+		error: function(){
+			concole.log("step 2 error");
+			upload_photo();
+		}
 		
 	})
 }
@@ -48,9 +56,13 @@ function save_photo() {
 			 "&v=5.69",
 		success: function(data) {
 			photo_id = data.response['0'].id;
+			concole.log("step 3 successful");
 			post();
 		},
-		error: save_photo();
+		error: function(){
+			concole.log("step 3 error");
+			save_photo();
+		}
 	})
 }
 
@@ -58,7 +70,13 @@ function post() {
 	$.ajax({
 		url: "https://api.vk.com/method/wall.post?owner_id=" + user_id +
 			 "&attachments=photo" + user_id + "_" + photo_id + "&v=5.69",
-		error: post();
+	    success: function() {
+			concole.log("step 4 successful");
+		},
+		error: function(){
+			concole.log("step 4 error");
+			post();
+		} 
 	})
 }
 
