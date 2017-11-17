@@ -6,19 +6,6 @@ $(document).ready(function(){
   refresh();
   
 })
-
-function getBase64() {
-    var img = document.getElementById("preview1");
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.width;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-    alert(dataURL.replace(/^data:image\/(png|jpg);base64,/, "")); 
-}
-getBase64();
-
 function refresh() {
   var img = document.getElementById("img"),
 	  ctx = img.getContext("2d"),
@@ -27,7 +14,7 @@ function refresh() {
   img.height = 480;
   img.width = 640;
   //useCORS: false;
-  image.src = "http://placeimg.com/640/480/any?" + Math.random();
+  image.src = "https://placeimg.com/640/480/any?" + Math.random();
   //image.src = "http://lorempixel.com/640/480?" + Math.random();
   //if (blur) {image.src = "https://picsum.photos/640/480/?blur?" + Math.random();}
   //else {image.src = "https://picsum.photos/640/480/?random?" + Math.random();}
