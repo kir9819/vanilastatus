@@ -6,6 +6,19 @@ $(document).ready(function(){
   refresh();
   
 })
+
+function getBase64() {
+    var img = document.getElementById("preview1");
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.width;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    alert(dataURL.replace(/^data:image\/(png|jpg);base64,/, "")); 
+}
+getBase64();
+
 function refresh() {
   var img = document.getElementById("img"),
 	  ctx = img.getContext("2d"),
