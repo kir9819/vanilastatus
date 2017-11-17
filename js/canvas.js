@@ -10,7 +10,7 @@ function refresh() {
   var img = document.getElementById("img"),
 	  ctx = img.getContext("2d"),
       image = new Image();
-  img.crossOrigin = "Anonymous";
+  image.crossOrigin = "Anonymous";
   img.height = 480;
   img.width = 640;
   //useCORS: false;
@@ -62,8 +62,9 @@ function refresh() {
         }
         ctx.strokeText(line, 320, marginTop);
 		console.log(line);
-	
+	//console.log(img.toDataUrl());
   }
+  
 }
 function randomInteger(min, max) {
     var rand = min + Math.random() * (max + 1 - min);
