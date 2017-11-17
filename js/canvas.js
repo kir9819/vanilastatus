@@ -10,9 +10,10 @@ function refresh() {
   var img = document.getElementById("img"),
 	  ctx = img.getContext("2d"),
       image = new Image();
-  img.crossOrigin ="Anonymous";
+  img.crossOrigin = "Anonymous";
   img.height = 480;
   img.width = 640;
+  useCORS: false;
   //image.src = "http://placeimg.com/640/480/any?" + Math.random();
   image.src = "http://lorempixel.com/640/480?" + Math.random();
   //if (blur) {image.src = "https://picsum.photos/640/480/?blur?" + Math.random();}
