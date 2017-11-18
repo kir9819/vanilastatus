@@ -76,7 +76,7 @@ function randomInteger(min, max) {
 
 function getText() {
   $.ajax({
-    url: "http://fucking-great-advice.ru/api/random/?",
+    url: "https://fucking-great-advice.ru/api/random/?",
 		dataType: "json",
 		success: function(data) {
 	  	text = data.text.replace(/&nbsp;/g, " ").replace(/&#151;/g, " -");
