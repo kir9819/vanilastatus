@@ -1,33 +1,79 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title> Статусики на каждую секунду </title>
+	<title> СтатусПолучи </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no"/> <!-- нельзя приближать на мобильных устройствах-->
 	<meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!-- <link rel="shortcut icon" href="images/favicon3.png" type="image/x-icon"> -->
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"> 
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	
 </head>
 <body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/canvas.js"></script>
 <script type="text/javascript" src="js/quotes.js"></script>
-<script type="text/javascript" src="js/vk.js"></script>
-<script src="https://vk.com/js/api/openapi.js?150" type="text/javascript"></script>
-<script type="text/javascript">
-  VK.init({
-    apiId: 6252252
-  });
-</script>
-<canvas id="img">1</canvas>
-<button onclick="refresh()">Refresh</button>
-<!-- <button onclick="blur()">Blur</button> -->
-<!-- <a href="https://oauth.vk.com/authorize?client_id=6252252&display=page&redirect_uri=https://kir9819.github.io/vanilastatus/&scope=photos&response_type=code&v=5.69">Войти вк</a> -->
-<!-- <a href = "login">vk</a> -->
 
-<!-- <button onclick="get_photo_url()">Save vk</button> -->
-<button onclick="login()">Save vk</button>
+<div class="container">
+  <div class="row">
+		<div class="col s12 m8 offset-m2 hide" id="text_up">
+			<p class="flow-text center-align">Получи картинку</p>
+		</div>
+    <div class="col s12 m8 offset-m2 valign-wrapper" id="preloader_img">
+			<div class="center-align cont" width="64px" height="64px">
+				<div class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-blue">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+
+					<div class="spinner-layer spinner-red">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+
+					<div class="spinner-layer spinner-yellow">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+
+					<div class="spinner-layer spinner-green">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div><div class="gap-patch">
+							<div class="circle"></div>
+						</div><div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col s12 m8 offset-m2 hide" id="img_block">
+      <canvas class="materialboxed" id="img"></canvas>
+			<div class="center-align">
+      	<a class="waves-effect waves-light light-blue darken-4 btn" onclick="refresh()">Другую</a>
+			</div>
+			<!--<button onclick="refresh()">Refresh</button>-->
+    </div>
+  </div>
+</div>
 </body>
 </html>

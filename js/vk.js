@@ -6,6 +6,21 @@ var photo_vk = "";
 var hash_vk = "";
 var photo_id = "";
 
+////HTML PART 
+/*
+<script src="https://vk.com/js/api/openapi.js?150" type="text/javascript"></script>
+
+<script type="text/javascript">
+  VK.init({
+    apiId: 6252252
+  });
+</script>
+
+
+<button onclick="login()">Save vk</button>
+*/
+
+
 
 function pictureAsBlob() {
 	var canvas = document.getElementById("img");

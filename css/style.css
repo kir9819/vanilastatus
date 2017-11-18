@@ -1,0 +1,16 @@
+#img {
+    width: 100%;
+}
+
+.hide {
+    /*display: none;*/
+}
+.cont {
+    width: 64px;
+    height: 64px;
+    margin: auto;
+}
+
+#img_block div {
+    margin-top: 10px;
+}
