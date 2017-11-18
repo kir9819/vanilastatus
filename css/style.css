@@ -14,3 +14,7 @@
 #img_block div {
     margin-top: 10px;
 }
+
+#p {
+    height: 1px !important;
+}

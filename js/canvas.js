@@ -13,17 +13,16 @@ function refresh() {
 	document.getElementById("preloader_img").classList.remove("hide");
 	document.getElementById("img_block").classList.add("hide");
 	document.getElementById("text_up").classList.add("hide");
-  getText2();
+	document.getElementById("p").classList.contains("hide") ? getText2() : getText();
   var img = document.getElementById("img"),
 	    ctx = img.getContext("2d"),
       image = new Image();
 
   img.height = HEIGHT;
   img.width = WIDTH;
-  useCORS: false;
-  image.src = "https://placeimg.com/" + WIDTH + "/" + HEIGHT + "/any?" + Math.random();
+  image.src = "https://placeimg.com/" + WIDTH + "/" + HEIGHT + "/any?" + Math.floor(Math.random() * (100000000));
   //image.src = "http://lorempixel.com/640/480?" + Math.random();
-  //else {image.src = "https://picsum.photos/640/480/?random?" + Math.random();}
+  //image.src = "https://picsum.photos/640/480/?random?" + Math.random();
   image.onload = function(){
 		document.getElementById("preloader_img").classList.add("hide");
 		document.getElementById("img_block").classList.remove("hide");
@@ -42,16 +41,13 @@ function refresh() {
 		var maxWidth = WIDTH - WIDTH / 10; //max width for text
     var lineHeight = 70;
     
-	
-	//var lineHeight = 480 / (ctx.measureText(text).width / maxWidth);
+		//var lineHeight = 480 / (ctx.measureText(text).width / maxWidth);
 		if ((ctx.measureText(text).width / maxWidth) > 5) {
-			// console.log ("a lot of text");
 			ctx.font = "20pt Tahoma";
 			lineHeight = 45;
 		}
 		var marginTop = (WIDTH/2) / (ctx.measureText(text).width / maxWidth);
-		// console.log("matrinTop = " + marginTop + "\n " + ctx.measureText(text).width + "\n " + maxWidth);
-		
+		marginTop = (marginTop > WIDTH/2) ? WIDTH/2 : marginTop;
 		var words = text.split(" ");
 		var countWords = words.length;
 		var line = "";
@@ -60,7 +56,6 @@ function refresh() {
 			var testWidth = ctx.measureText(testLine).width;
 			if (testWidth > maxWidth) {
 				ctx.strokeText(line, WIDTH/2, marginTop);
-				// console.log (line);
 				line = words[n] + " ";
 				marginTop += lineHeight;
 			}
@@ -69,7 +64,6 @@ function refresh() {
 			}
 		}
 		ctx.strokeText(line, WIDTH/2, marginTop);
-		// console.log(line);
   	}
   
   
@@ -82,11 +76,10 @@ function randomInteger(min, max) {
 
 function getText() {
   $.ajax({
-    url: "http://fucking-great-advice.ru/api/random/censored/?",
+    url: "http://fucking-great-advice.ru/api/random/?",
 		dataType: "json",
 		success: function(data) {
 	  	text = data.text.replace(/&nbsp;/g, " ").replace(/&#151;/g, " -");
-	  	// console.log(text);
 		},
 		error: function() {
 			text = quotes[Number(randomInteger(0, 483))];
@@ -100,12 +93,10 @@ function getText2() {
 	dataType: "jsonp",
 	success: function(data) {
 	  text = data.quoteText;
-	  // console.log(text);
   	}
   })
 }
 
 function getText3(data) {
 	text= data.quoteText;
-	// console.log(text);
 }
