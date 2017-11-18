@@ -13,7 +13,8 @@ function refresh() {
 	document.getElementById("preloader_img").classList.remove("hide");
 	document.getElementById("img_block").classList.add("hide");
 	document.getElementById("text_up").classList.add("hide");
-	document.getElementById("p").classList.contains("hide") ? getText2() : getText();
+	//document.getElementById("p").classList.contains("hide") ? getText2() : getText();
+	getText2();
   var img = document.getElementById("img"),
 	    ctx = img.getContext("2d"),
       image = new Image();
@@ -85,6 +86,7 @@ function getText() {
 			text = quotes[Number(randomInteger(0, 483))];
 		}
   })
+	// document.getElementById("p").classList.add("hide disable");
 }
 
 function getText2() {
@@ -95,6 +97,7 @@ function getText2() {
 	  text = data.quoteText;
   	}
   })
+
 }
 
 function getText3(data) {
