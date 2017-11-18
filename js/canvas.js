@@ -45,12 +45,12 @@ function refresh() {
 	
 	//var lineHeight = 480 / (ctx.measureText(text).width / maxWidth);
 		if ((ctx.measureText(text).width / maxWidth) > 5) {
-			console.log ("a lot of text");
+			// console.log ("a lot of text");
 			ctx.font = "20pt Tahoma";
 			lineHeight = 45;
 		}
 		var marginTop = (WIDTH/2) / (ctx.measureText(text).width / maxWidth);
-		console.log("matrinTop = " + marginTop + "\n " + ctx.measureText(text).width + "\n " + maxWidth);
+		// console.log("matrinTop = " + marginTop + "\n " + ctx.measureText(text).width + "\n " + maxWidth);
 		
 		var words = text.split(" ");
 		var countWords = words.length;
@@ -60,7 +60,7 @@ function refresh() {
 			var testWidth = ctx.measureText(testLine).width;
 			if (testWidth > maxWidth) {
 				ctx.strokeText(line, WIDTH/2, marginTop);
-				console.log (line);
+				// console.log (line);
 				line = words[n] + " ";
 				marginTop += lineHeight;
 			}
@@ -69,7 +69,7 @@ function refresh() {
 			}
 		}
 		ctx.strokeText(line, WIDTH/2, marginTop);
-		console.log(line);
+		// console.log(line);
   	}
   
   
@@ -86,7 +86,7 @@ function getText() {
 		dataType: "json",
 		success: function(data) {
 	  	text = data.text.replace(/&nbsp;/g, " ").replace(/&#151;/g, " -");
-	  	console.log(text);
+	  	// console.log(text);
 		},
 		error: function() {
 			text = quotes[Number(randomInteger(0, 483))];
@@ -96,16 +96,16 @@ function getText() {
 
 function getText2() {
   $.ajax({
-	url: "http://api.forismatic.com/api/1.0/get?method=getQuote&format=jsonp&lang=ru&jsonp=getText3",
+	url: "https://api.forismatic.com/api/1.0/get?method=getQuote&format=jsonp&lang=ru&jsonp=getText3",
 	dataType: "jsonp",
 	success: function(data) {
 	  text = data.quoteText;
-	  console.log(text);
+	  // console.log(text);
   	}
   })
 }
 
 function getText3(data) {
 	text= data.quoteText;
-	console.log(text);
+	// console.log(text);
 }
