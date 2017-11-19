@@ -22,73 +22,74 @@
 		document.getElementById("container").style.minHeight = windowHeight + "px";
 	})
 </script>
+<div class=" valign-wrapper" id="container">
+	<div class="container center-align">
+		<div class="row">
+			<div class="col s12 m8 offset-m2 hide" id="text_up">
+				<p class="flow-text center-align">Статус для сегодняшнего тебя</p>
+			</div>
+			<div class="col s12 m8 offset-m2 valign-wrapper" id="preloader_img">
+				<div class="center-align cont" width="64px" height="64px">
+					<div class="preloader-wrapper big active">
+						<div class="spinner-layer spinner-blue">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
 
-<div class="container valign-wrapper" id="container">
-  <div class="row">
-		<div class="col s12 m8 offset-m2 hide" id="text_up">
-			<p class="flow-text center-align">Статус для сегодняшнего тебя</p>
-		</div>
-    <div class="col s12 m8 offset-m2 valign-wrapper" id="preloader_img">
-			<div class="center-align cont" width="64px" height="64px">
-				<div class="preloader-wrapper big active">
-					<div class="spinner-layer spinner-blue">
-						<div class="circle-clipper left">
-							<div class="circle"></div>
+						<div class="spinner-layer spinner-red">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
 						</div>
-						<div class="gap-patch">
-							<div class="circle"></div>
-						</div>
-						<div class="circle-clipper right">
-							<div class="circle"></div>
-						</div>
-					</div>
 
-					<div class="spinner-layer spinner-red">
-						<div class="circle-clipper left">
-							<div class="circle"></div>
+						<div class="spinner-layer spinner-yellow">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
 						</div>
-						<div class="gap-patch">
-							<div class="circle"></div>
-						</div>
-						<div class="circle-clipper right">
-							<div class="circle"></div>
-						</div>
-					</div>
 
-					<div class="spinner-layer spinner-yellow">
-						<div class="circle-clipper left">
-							<div class="circle"></div>
-						</div>
-						<div class="gap-patch">
-							<div class="circle"></div>
-						</div>
-						<div class="circle-clipper right">
-							<div class="circle"></div>
-						</div>
-					</div>
-
-					<div class="spinner-layer spinner-green">
-						<div class="circle-clipper left">
-							<div class="circle"></div>
-						</div>
-						<div class="gap-patch">
-							<div class="circle"></div>
-						</div>
-						<div class="circle-clipper right">
-							<div class="circle"></div>
+						<div class="spinner-layer spinner-green">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col s12 m8 offset-m2 hide" id="img_block">
-      <canvas class="materialboxed" id="img"></canvas>
-			<div class="center-align">
-      	<a class="waves-effect waves-light light-blue darken-4 btn" onclick="refresh()">Другое</a>
-				<!--<button class="hide btn-flat disabled" id="p" onclick="refresh()"></button>-->
+			<div class="col s12 m8 offset-m2 hide" id="img_block">
+				<canvas class="materialboxed" id="img"></canvas>
+				<div class="center-align">
+					<a class="waves-effect waves-light light-blue darken-4 btn" onclick="refresh()">Другое</a>
+					<!--<button class="hide btn-flat disabled" id="p" onclick="refresh()"></button>-->
+				</div>
 			</div>
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 <footer class="page-footer grey lighten-4" id="footer">
 	<div class="footer-copyright grey lighten-4">
