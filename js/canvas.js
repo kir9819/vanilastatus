@@ -2,7 +2,6 @@ var text = "";
 var WIDTH = 640;
 var HEIGHT = 480;
 
-
 $(document).ready(function(){
 	document.getElementById("preloader_img").style.cssText = "min-height: " + HEIGHT + "px;";
 	$('.materialboxed').materialbox();
@@ -21,7 +20,8 @@ function refresh() {
 
   img.height = HEIGHT;
   img.width = WIDTH;
-  image.src = "https://placeimg.com/" + WIDTH + "/" + HEIGHT + "/any?" + Math.floor(Math.random() * (100000000));
+
+  image.src = "https://cors.now.sh/https://placeimg.com/" + WIDTH + "/" + HEIGHT + "/any?" + Math.floor(Math.random() * (100000000));
   //image.src = "http://lorempixel.com/640/480?" + Math.random();
   //image.src = "https://picsum.photos/640/480/?random?" + Math.random();
   image.onload = function(){
