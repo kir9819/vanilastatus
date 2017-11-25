@@ -83,7 +83,7 @@ function vkUploadPicture(uploadUrl) {
         data: formData,
         processData: false,
         contentType: false,
-
+		
         success: function (response) {
             var responseDeserialized = JSON.parse(response);
             vkSavePicture(responseDeserialized.photo, responseDeserialized.server, responseDeserialized.hash);
