@@ -20,10 +20,11 @@ function refresh() {
 
   img.height = HEIGHT;
   img.width = WIDTH;
-
+	image.crossOrigin = 'Anonymous';
   image.src = "https://cors.now.sh/https://placeimg.com/" + WIDTH + "/" + HEIGHT + "/any?" + Math.floor(Math.random() * (100000000));
   //image.src = "http://lorempixel.com/640/480?" + Math.random();
   //image.src = "https://picsum.photos/640/480/?random?" + Math.random();
+
   image.onload = function(){
 		document.getElementById("preloader_img").classList.add("hide");
 		document.getElementById("img_block").classList.remove("hide");

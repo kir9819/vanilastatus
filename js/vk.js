@@ -20,7 +20,10 @@ var photo_id = "";
 <button onclick="login()">Save vk</button>
 */
 
-
+function getDataURL() {
+	var canvas = document.getElementById("img");
+	return canvas.toDataURL();
+}
 
 function pictureAsBlob() {
 	var canvas = document.getElementById("img");
@@ -37,6 +40,8 @@ function convertImageToBlob(dataURL) {
 }
 
 function login() {
+	//var canvas = document.getElementById("img");
+	//console.log(canvas.toDataURL());
 	VK.Auth.login(function(response) {
       if (response.session) {
         console.log("authorization ok");
@@ -69,7 +74,8 @@ function vkUploadPicture(uploadUrl) {
 
     var formData = new FormData();
     formData.append("url", uploadUrl);
-    formData.append("photo", pictureAsBlob());
+    //formData.append("photo", pictureAsBlob());
+	formData.append("photo", getDataURL());
 
     $.ajax({
         url: uploadUrl,
